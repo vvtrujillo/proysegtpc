@@ -8,6 +8,7 @@ const FormRegistraCaminata = ({datosAreas, datosResp}) => {
 
     const handleDropdownChange = (e) =>{
         console.log('evento change', e.target.value);
+        setFormulario({[e.target.name]:e.target.value})
     }
 
     const grabaCaminata = async e => {
@@ -94,7 +95,7 @@ const FormRegistraCaminata = ({datosAreas, datosResp}) => {
                                maxLength={255}
                                onChange={handleDropdownChange}                               
                         />
-                        <p id="charNum">255 characters remaining</p>
+                        <p>Contador de caracteres acá</p>
                     </FormGroup>
                     <Button type="submit" color="primary" className="container">Grabar</Button>
                 </Form>
