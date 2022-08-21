@@ -19,6 +19,18 @@ const CaminataSchema = mongoose.Schema({
         type: String
     },
 
+    pregRiesgo:{
+        type: String
+    },
+
+    pregAnalisis:{
+        type: String
+    },
+
+    pregAseo:{
+        type: String
+    },
+
     comentariosGrales:{
         type: String,
         maxLength: [255, 'El máximo de caracteres es de 255.'],

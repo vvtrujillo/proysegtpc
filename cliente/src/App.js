@@ -15,6 +15,7 @@ function App() {
   const [datosResp, setDatosResp] = useState([]);
 
 
+  //Traemos los datos de las áreas de TPC
   useEffect(() => {
     axios.get('http://localhost:8000/api/v1/maestros/areastpc')
       .then(resp => {
@@ -26,6 +27,7 @@ function App() {
       })
   }, [])
 
+  //Traemos los datos de respuestas de las caminatas
   useEffect(() => {
     axios.get('http://localhost:8000/api/v1/respcaminatas')
       .then(resp => {
