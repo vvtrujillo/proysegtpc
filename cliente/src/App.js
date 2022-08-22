@@ -1,12 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
 import {Link, Route, Routes} from 'react-router-dom';
-import {Container} from 'reactstrap';
+import {Col, Container, Row} from 'reactstrap';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import FormRegistraCaminata from './Componentes/FormRegistraCaminata';
 import React from 'react';
+import MaestrosMain from './Componentes/Maestros/MaestrosMain';
 
 function App() {
 
@@ -42,10 +43,21 @@ function App() {
 
   return (
     <Container>
-      <Link to={'/registracaminata'}>Registrar Caminata</Link>
+      <Row>
+        <Col>
+          <Link to={'/registracaminata'}>Registrar Caminata</Link>
+        </Col>
+        <Col>
+          <Link to={'/Maestros'}>Maestros</Link>
+        </Col>
+        <Col>
+          <Link to={'/'}>Home</Link>
+        </Col>        
+      </Row>
       <Routes>
         <Route path='registracaminata' element={<FormRegistraCaminata datosAreas={datosAreas} datosResp={datosResp}/>}></Route>
-      </Routes>
+        <Route path='Maestros/*' element={<MaestrosMain></MaestrosMain>}/>
+      </Routes>      
     </Container>
   );
 }
