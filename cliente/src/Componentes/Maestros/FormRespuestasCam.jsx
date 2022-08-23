@@ -1,14 +1,20 @@
 import React from "react";
 import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { Button, Container, Form, FormGroup, Input, Label, Table } from "reactstrap";
+import axios from "axios";
 
 const estadoInicial = {
     respuesta:''
 }
 
-const FormRespuestasCam = ({datosResp, CrearRespuesta}) => {
+const FormRespuestasCam = ({datosResp, guardarRespuestaFn, EliminarFn}) => {
 
     const [formulario, setFormulario] = useState([estadoInicial]);
+
+    const navigate = useNavigate();
+
+    const {id} = useParams();
 
     const actualizarFormulario = ({target: {name, value}}) => {
         setFormulario({
@@ -17,11 +23,21 @@ const FormRespuestasCam = ({datosResp, CrearRespuesta}) => {
         })
     }
 
-    const guardar = e => {
+    const guardar = async e => {
         e.preventDefault();
-        
-        let resp = await CrearRespuesta(formulario);
-        setFormulario(estadoInicial);        
+        let respuesta=false;
+
+        if(!id){
+            respuesta = await guardarRespuestaFn(formulario);            
+            setFormulario(estadoInicial);
+        } else {
+           //Aca debo actualizar
+        }
+
+        if(respuesta){            
+            navigate('/Maestros/Respuestas');
+        }
+               
     }
 
     return(
@@ -30,8 +46,14 @@ const FormRespuestasCam = ({datosResp, CrearRespuesta}) => {
                 <Form onSubmit={guardar}>
                     <h1>Agregar nueva Respuesta</h1>
                     <FormGroup>
-                        <Label nombre='respuesta'>Respuesta</Label>
-                        <Input nombre='respuesta' placeholder="Respuesta..." onChange={actualizarFormulario}></Input>
+                        <Label name='respuesta'>Respuesta</Label>
+                        <Input name='respuesta'
+                               type='text'
+                               placeholder="Respuesta..."                               
+                               onChange={actualizarFormulario}
+                               required
+                               >                               
+                        </Input>
                     </FormGroup>
                     <Button type="submit" color="primary">Grabar Respuesta</Button>
                     <hr></hr>                    
@@ -49,7 +71,9 @@ const FormRespuestasCam = ({datosResp, CrearRespuesta}) => {
                                     <td>{respuesta.respuesta}</td>
                                     <td>
                                         <Button color='primary'>Editar</Button>
-                                        <Button color='danger'>Eliminar</Button>                                        
+                                        <Button color='danger'
+                                                onClick={e => EliminarFn(respuesta.respuesta, respuesta._id)}
+                                                >Eliminar</Button>                                        
                                     </td>
                                 </tr>
                                 )

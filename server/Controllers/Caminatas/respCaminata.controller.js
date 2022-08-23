@@ -31,3 +31,18 @@ module.exports.listar = (req, res) => {
             })
         });
 }
+
+//Eliminar
+module.exports.eliminar = (req, res) => {
+    RespCaminatas.findByIdAndDelete(req.params.id)
+        .then(resp =>{
+            res.json({
+                error: false
+            })
+        }).catch(e =>{
+            res.json({
+                error: true,
+                mensaje: 'Ha ocurrido un error al eliminar respuesta.'
+            })
+        });
+}

@@ -8,6 +8,7 @@ module.exports = (app) => {
     //Respuestas Caminatas
     app.post('/api/v1/respcaminatas', RespCaminatasController.crear);
     app.get('/api/v1/respcaminatas', RespCaminatasController.listar);
+    app.delete('/api/v1/respcaminatas/:id', RespCaminatasController.eliminar);
     //areas TPC
     app.post('/api/v1/maestros/areastpc', AreasTpcController.crear);
     app.get('/api/v1/maestros/areastpc', AreasTpcController.listar);
