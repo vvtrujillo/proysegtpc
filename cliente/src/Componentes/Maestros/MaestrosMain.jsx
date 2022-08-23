@@ -52,7 +52,7 @@ const MaestrosMain = () => {
           .then(resp => {
             if(!resp.data.error){
               setDatosResp([...datosResp, resp.data.datosRespCaminata]);
-              Swal.fire('','Se ha creado el jugador','success');
+              Swal.fire('','Se ha guardado con éxito la respuesta.','success');
               return true;
             }else{
               Swal.fire('','No pudimos crear jugador', 'error');

@@ -10,7 +10,7 @@ const estadoInicial = {
 
 const FormRespuestasCam = ({datosResp, guardarRespuestaFn, EliminarFn}) => {
 
-    const [formulario, setFormulario] = useState([estadoInicial]);
+    const [formulario, setFormulario] = useState(estadoInicial);
 
     const navigate = useNavigate();
 
@@ -51,8 +51,7 @@ const FormRespuestasCam = ({datosResp, guardarRespuestaFn, EliminarFn}) => {
                                type='text'
                                placeholder="Respuesta..."                               
                                onChange={actualizarFormulario}
-                               required
-                               >                               
+                               required>                               
                         </Input>
                     </FormGroup>
                     <Button type="submit" color="primary">Grabar Respuesta</Button>
@@ -71,9 +70,12 @@ const FormRespuestasCam = ({datosResp, guardarRespuestaFn, EliminarFn}) => {
                                     <td>{respuesta.respuesta}</td>
                                     <td>
                                         <Button color='primary'>Editar</Button>
-                                        <Button color='danger'
-                                                onClick={e => EliminarFn(respuesta.respuesta, respuesta._id)}
-                                                >Eliminar</Button>                                        
+                                        <Button
+                                            color='danger'
+                                            onClick={e => EliminarFn(respuesta.respuesta, respuesta._id)}
+                                            >
+                                            Eliminar
+                                        </Button>                                        
                                     </td>
                                 </tr>
                                 )
