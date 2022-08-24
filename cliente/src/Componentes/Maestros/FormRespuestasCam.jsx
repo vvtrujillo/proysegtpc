@@ -72,8 +72,7 @@ const FormRespuestasCam = ({datosResp, guardarRespuestaFn, EliminarFn}) => {
                                         <Button color='primary'>Editar</Button>
                                         <Button
                                             color='danger'
-                                            onClick={e => EliminarFn(respuesta.respuesta, respuesta._id)}
-                                            >
+                                            onClick={e => EliminarFn(respuesta.respuesta, respuesta._id)}>
                                             Eliminar
                                         </Button>                                        
                                     </td>
